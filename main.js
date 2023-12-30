@@ -8,7 +8,7 @@ const mobileMenu = document.querySelector('.mobile-menu');
 
 /* Icono carrito y detalles de producto */
 const navbarShoppingCart = document.querySelector('.navbar-shopping-cart');
-const productDetail = document.querySelector('.product-detail');
+const productDetail = document.querySelector('#shopping-cart');
 
 /* Product cards container */
 const cardsContainer = document.querySelector('.cards-container');
@@ -147,3 +147,4 @@ function renderProducts(arr) {
 }
 
 renderProducts(productList);
+
