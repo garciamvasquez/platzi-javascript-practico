@@ -8,40 +8,55 @@ const mobileMenu = document.querySelector('.mobile-menu');
 
 /* Icono carrito y detalles de producto */
 const navbarShoppingCart = document.querySelector('.navbar-shopping-cart');
-const productDetail = document.querySelector('#shopping-cart');
+const shoppingCartDetail = document.querySelector('#shopping-cart');
 
 /* Product cards container */
 const cardsContainer = document.querySelector('.cards-container');
 
+/* Aside product-detail */
+const productDetail = document.querySelector('#product-detail');
+
+/* Icon product-detail-close */
+const iconCloseProductDetail = document.querySelector('.product-detail-close');
+
+
 navbarEmail.addEventListener('click', toggleDesktopMenu);
 imgMobileMenu.addEventListener('click', toggleMobileMenu);
-navbarShoppingCart.addEventListener('click', toggleProductDetail);
+navbarShoppingCart.addEventListener('click', toggleShoppingCartDetail);
+iconCloseProductDetail.addEventListener('click', closeProductDetail);
 
 
-
-
+/* ########### */
+/* # TOGGLES # */
+/* ########### */
 function toggleDesktopMenu() {
-    const isProductDetailClosed = productDetail.classList.contains('inactive');
+    /* const isShoppingCartDetailClosed = shoppingCartDetail.classList.contains('inactive');
 
-    if (!isProductDetailClosed) {
-        productDetail.classList.add('inactive');
-    }
+    if (!isShoppingCartDetailClosed) {
+        shoppingCartDetail.classList.add('inactive');
+    } */
 
     desktopMenu.classList.toggle('inactive');
+    productDetail.classList.add('inactive');
+    shoppingCartDetail.classList.add('inactive');
+    mobileMenu.classList.add('inactive');
 }
 
 function toggleMobileMenu() {
-    const isProductDetailClosed = productDetail.classList.contains('inactive');
+    /* const isShoppingCartDetailClosed = shoppingCartDetail.classList.contains('inactive');
 
-    if (!isProductDetailClosed) {
+    if (!isShoppingCartDetailClosed) {
         productDetail.classList.add('inactive');
-    }
+    } */
 
     mobileMenu.classList.toggle('inactive');
+    productDetail.classList.add('inactive');
+    shoppingCartDetail.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
 }
 
-function toggleProductDetail() {
-    const isDesktopMenuClosed = desktopMenu.classList.contains('inactive');
+function toggleShoppingCartDetail() {
+    /* const isDesktopMenuClosed = desktopMenu.classList.contains('inactive');
     const isMobileMenuClosed = mobileMenu.classList.contains('inactive');
 
     if (!isDesktopMenuClosed) {
@@ -50,10 +65,44 @@ function toggleProductDetail() {
 
     if (!isMobileMenuClosed) {
         mobileMenu.classList.add('inactive');
-    }
+    } */
 
-    productDetail.classList.toggle('inactive');
+    shoppingCartDetail.classList.toggle('inactive');
+    desktopMenu.classList.add('inactive');
+    mobileMenu.classList.add('inactive');
+    productDetail.classList.add('inactive');
 }
+
+
+/* ################ */
+/* # OPEN - CLOSE # */
+/* ################ */
+function openProductDetail() {
+    /* const isProductDetailClosed = productDetail.classList.contains('inactive');
+    
+    if (isProductDetailClosed) {
+        productDetail.classList.remove('inactive');
+    } */
+
+    productDetail.classList.remove('inactive');
+    desktopMenu.classList.add('inactive');
+    mobileMenu.classList.add('inactive');
+    shoppingCartDetail.classList.add('inactive');
+}
+
+function closeProductDetail() {
+    /* const isProductDetailClosed = productDetail.classList.contains('inactive');
+    
+    if (!isProductDetailClosed) {
+        productDetail.classList.add('inactive');
+    } */
+
+    productDetail.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
+    mobileMenu.classList.add('inactive');
+    shoppingCartDetail.classList.add('inactive');
+}
+
 
 const productList = [];
 
@@ -103,6 +152,7 @@ productList.push ({
     image: 'https://m.media-amazon.com/images/I/81k2Gmal+VL._AC_SL1500_.jpg'
 }); 
 
+
 function renderProducts(arr) {
     for (product of arr) {
         /* div cards-container */
@@ -112,6 +162,7 @@ function renderProducts(arr) {
         /* img */
         const productImg = document.createElement('img');
         productImg.setAttribute('src', product.image);
+        productImg.addEventListener('click', openProductDetail);
     
         /* div product-info */
         const productInfo = document.createElement('div');
